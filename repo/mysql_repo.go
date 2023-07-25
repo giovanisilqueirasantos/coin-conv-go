@@ -40,3 +40,28 @@ func (r mysqlRepo) GetExchange(ctx context.Context, currencyFrom, currencyTo dom
 
 	return &res, nil
 }
+
+func (r mysqlRepo) StoreExchange(ctx context.Context, currencyFrom, currencyTo domain.Currency, amountQuant, rate, convAmount domain.Amount) error {
+	query := `INSERT INTO exchanges (currency_from, currency_to, amount, rate, conv_amount) VALUES (?, ?, ?, ?, ?);`
+
+	stmt, err := r.Conn.PrepareContext(ctx, query)
+	if err != nil {
+		return err
+	}
+
+	exec, err := stmt.ExecContext(ctx, currencyFrom.Text, currencyTo.Text, fmt.Sprintf("%f", amountQuant.Value), fmt.Sprintf("%f", rate.Value), fmt.Sprintf("%f", convAmount.Value))
+	if err != nil {
+		return err
+	}
+
+	affect, err := exec.RowsAffected()
+	if err != nil {
+		return err
+	}
+
+	if affect != 1 {
+		return fmt.Errorf("error trying to store exchange with total rows affcted: %d", affect)
+	}
+
+	return nil
+}
