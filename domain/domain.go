@@ -7,46 +7,54 @@ import (
 	"strings"
 )
 
-type currency struct {
+type Currency struct {
 	Text   string
 	Symbol string
 }
 
-var validCurrencies = []currency{
+var validCurrencies = []Currency{
 	{Text: "real", Symbol: "R$"},
 	{Text: "dollar", Symbol: "$"},
 	{Text: "euro", Symbol: "€"},
 	{Text: "btc", Symbol: "₿"},
 }
 
-func NewCurrency(text string) (*currency, error) {
-	var cur *currency
-
+func (cur *Currency) New(text string) error {
 	for _, c := range validCurrencies {
 		if c.Text == text {
-			cur = &currency{Text: c.Text, Symbol: c.Symbol}
+			cur.Text = c.Text
+			cur.Symbol = c.Symbol
+			return nil
 		}
 	}
 
-	if cur == nil {
-		return nil, errors.New("invalid currency text")
-	}
-
-	return cur, nil
+	return errors.New("invalid currency text")
 }
 
-type amount float64
+func (cur Currency) Valid() bool {
+	for _, c := range validCurrencies {
+		if c.Text == cur.Text && c.Symbol == cur.Symbol {
+			return true
+		}
+	}
 
-func NewAmount(text string) (*amount, error) {
+	return false
+}
+
+type Amount struct {
+	Value float64
+}
+
+func (a *Amount) New(text string) error {
 	if text == "" {
-		return nil, errors.New("text can not be empty")
+		return errors.New("text can not be empty")
 	} else if strings.Contains(text, ".") {
 		if !regexp.MustCompile(`^(?:[0-9])[0-9]*\.(?:[0-9])[0-9]*$`).MatchString(text) {
-			return nil, errors.New("text in worng format n.n")
+			return errors.New("text in worng format n.n")
 		}
 	} else {
 		if !regexp.MustCompile(`^[0-9]*$`).MatchString(text) {
-			return nil, errors.New("text can only contain numbers")
+			return errors.New("text can only contain numbers")
 		}
 	}
 
@@ -60,14 +68,13 @@ func NewAmount(text string) (*amount, error) {
 
 	textFloat, err := strconv.ParseFloat(strings.Join(textSplited, "."), 64)
 	if err != nil {
-		return nil, err
+		return err
 	}
 
-	am := amount(textFloat)
-	return &am, nil
+	a.Value = textFloat
+	return nil
 }
 
-func ConvertCurrency(to currency, amountQuant amount, rate amount) (*amount, string) {
-	am := amount(rate * amountQuant)
-	return &am, to.Symbol
+func ConvertCurrency(to Currency, amountQuant, rate Amount) (Amount, string) {
+	return Amount{Value: rate.Value * amountQuant.Value}, to.Symbol
 }

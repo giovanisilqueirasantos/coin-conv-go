@@ -7,66 +7,79 @@ import (
 )
 
 func TestConvertCurrency(t *testing.T) {
-	real, err := NewCurrency("real")
+	real := Currency{}
+	err := real.New("real")
 	assert.Nil(t, err)
 
-	dollar, err := NewCurrency("dollar")
+	dollar := Currency{}
+	err = dollar.New("dollar")
 	assert.Nil(t, err)
 
-	euro, err := NewCurrency("euro")
+	euro := Currency{}
+	err = euro.New("euro")
 	assert.Nil(t, err)
 
-	dollarAmount, err := NewAmount("10")
+	dollarAmount := Amount{}
+	err = dollarAmount.New("10")
 	assert.Nil(t, err)
 
-	realAmount, err := NewAmount("10")
+	realAmount := Amount{}
+	err = realAmount.New("10")
 	assert.Nil(t, err)
 
-	euroAmount, err := NewAmount("10")
+	euroAmount := Amount{}
+	err = euroAmount.New("10")
 	assert.Nil(t, err)
 
-	btcAmount, err := NewAmount("10")
+	btcAmount := Amount{}
+	err = btcAmount.New("10")
 	assert.Nil(t, err)
 
-	dollarToRealRate, err := NewAmount("4.50")
+	dollarToRealRate := Amount{}
+	err = dollarToRealRate.New("4.50")
 	assert.Nil(t, err)
 
-	realToDollarRate, err := NewAmount("0.22")
+	realToDollarRate := Amount{}
+	err = realToDollarRate.New("0.22")
 	assert.Nil(t, err)
 
-	realToEuroRate, err := NewAmount("0.19")
+	realToEuroRate := Amount{}
+	err = realToEuroRate.New("0.19")
 	assert.Nil(t, err)
 
-	euroToRealRate, err := NewAmount("5.30")
+	euroToRealRate := Amount{}
+	err = euroToRealRate.New("5.30")
 	assert.Nil(t, err)
 
-	btcToDollarRate, err := NewAmount("29932.60")
+	btcToDollarRate := Amount{}
+	err = btcToDollarRate.New("29932.60")
 	assert.Nil(t, err)
 
-	btcToRealRate, err := NewAmount("143112.32")
+	btcToRealRate := Amount{}
+	err = btcToRealRate.New("143112.32")
 	assert.Nil(t, err)
 
-	realToDollar, currencySymbol := ConvertCurrency(*dollar, *realAmount, *realToDollarRate)
-	assert.Equal(t, amount(2.2), *realToDollar)
+	realToDollar, currencySymbol := ConvertCurrency(dollar, realAmount, realToDollarRate)
+	assert.Equal(t, 2.2, realToDollar.Value)
 	assert.Equal(t, "$", currencySymbol)
 
-	dollarToReal, currencySymbol := ConvertCurrency(*real, *dollarAmount, *dollarToRealRate)
-	assert.Equal(t, amount(45), *dollarToReal)
+	dollarToReal, currencySymbol := ConvertCurrency(real, dollarAmount, dollarToRealRate)
+	assert.Equal(t, float64(45), dollarToReal.Value)
 	assert.Equal(t, "R$", currencySymbol)
 
-	realToEuro, currencySymbol := ConvertCurrency(*euro, *realAmount, *realToEuroRate)
-	assert.Equal(t, amount(1.9), *realToEuro)
+	realToEuro, currencySymbol := ConvertCurrency(euro, realAmount, realToEuroRate)
+	assert.Equal(t, 1.9, realToEuro.Value)
 	assert.Equal(t, "€", currencySymbol)
 
-	euroToReal, currencySymbol := ConvertCurrency(*real, *euroAmount, *euroToRealRate)
-	assert.Equal(t, amount(53), *euroToReal)
+	euroToReal, currencySymbol := ConvertCurrency(real, euroAmount, euroToRealRate)
+	assert.Equal(t, float64(53), euroToReal.Value)
 	assert.Equal(t, "R$", currencySymbol)
 
-	btcToDollar, currencySymbol := ConvertCurrency(*dollar, *btcAmount, *btcToDollarRate)
-	assert.Equal(t, amount(299326), *btcToDollar)
+	btcToDollar, currencySymbol := ConvertCurrency(dollar, btcAmount, btcToDollarRate)
+	assert.Equal(t, float64(299326), btcToDollar.Value)
 	assert.Equal(t, "$", currencySymbol)
 
-	btcToReal, currencySymbol := ConvertCurrency(*real, *btcAmount, *btcToRealRate)
-	assert.Equal(t, amount(1431123.2000000002), *btcToReal)
+	btcToReal, currencySymbol := ConvertCurrency(real, btcAmount, btcToRealRate)
+	assert.Equal(t, 1431123.2000000002, btcToReal.Value)
 	assert.Equal(t, "R$", currencySymbol)
 }
