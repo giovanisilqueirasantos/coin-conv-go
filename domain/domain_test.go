@@ -59,27 +59,21 @@ func TestConvertCurrency(t *testing.T) {
 	err = btcToRealRate.New("143112.32")
 	assert.Nil(t, err)
 
-	realToDollar, currencySymbol := ConvertCurrency(dollar, realAmount, realToDollarRate)
+	realToDollar := ConvertCurrency(realAmount, realToDollarRate)
 	assert.Equal(t, 2.2, realToDollar.Value)
-	assert.Equal(t, "$", currencySymbol)
 
-	dollarToReal, currencySymbol := ConvertCurrency(real, dollarAmount, dollarToRealRate)
+	dollarToReal := ConvertCurrency(dollarAmount, dollarToRealRate)
 	assert.Equal(t, float64(45), dollarToReal.Value)
-	assert.Equal(t, "R$", currencySymbol)
 
-	realToEuro, currencySymbol := ConvertCurrency(euro, realAmount, realToEuroRate)
+	realToEuro := ConvertCurrency(realAmount, realToEuroRate)
 	assert.Equal(t, 1.9, realToEuro.Value)
-	assert.Equal(t, "€", currencySymbol)
 
-	euroToReal, currencySymbol := ConvertCurrency(real, euroAmount, euroToRealRate)
+	euroToReal := ConvertCurrency(euroAmount, euroToRealRate)
 	assert.Equal(t, float64(53), euroToReal.Value)
-	assert.Equal(t, "R$", currencySymbol)
 
-	btcToDollar, currencySymbol := ConvertCurrency(dollar, btcAmount, btcToDollarRate)
+	btcToDollar := ConvertCurrency(btcAmount, btcToDollarRate)
 	assert.Equal(t, float64(299326), btcToDollar.Value)
-	assert.Equal(t, "$", currencySymbol)
 
-	btcToReal, currencySymbol := ConvertCurrency(real, btcAmount, btcToRealRate)
+	btcToReal := ConvertCurrency(btcAmount, btcToRealRate)
 	assert.Equal(t, 1431123.2000000002, btcToReal.Value)
-	assert.Equal(t, "R$", currencySymbol)
 }

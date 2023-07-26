@@ -75,6 +75,6 @@ func (a *Amount) New(text string) error {
 	return nil
 }
 
-func ConvertCurrency(to Currency, amountQuant, rate Amount) (Amount, string) {
-	return Amount{Value: rate.Value * amountQuant.Value}, to.Symbol
+func ConvertCurrency(amountQuant, rate Amount) Amount {
+	return Amount{Value: rate.Value * amountQuant.Value}
 }
