@@ -4,6 +4,7 @@ import (
 	"database/sql"
 	"fmt"
 	"log"
+	"time"
 
 	_ "github.com/go-sql-driver/mysql"
 
@@ -45,8 +46,9 @@ func main() {
 
 	e.Use(middleware.CORS())
 
-	repo := repo.NewMysqlRepo(dbConn)
-	service := service.NewService(repo)
+	repoMysql := repo.NewMysqlRepo(dbConn)
+	cacheRepo := repo.NewInMemoryCacheRepo(repoMysql, 30*time.Minute)
+	service := service.NewService(cacheRepo)
 
 	handler.NewHttpHandler(e, service)
 
