@@ -5,8 +5,8 @@ import (
 	"errors"
 	"testing"
 
-	"github.com/giovanisilqueirasantos/coinconv/domain"
-	"github.com/giovanisilqueirasantos/coinconv/repo"
+	"github.com/giovanisilqueirasantos/coin-conv-go/domain"
+	"github.com/giovanisilqueirasantos/coin-conv-go/repo"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
 )

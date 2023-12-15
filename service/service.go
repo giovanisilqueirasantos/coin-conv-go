@@ -3,7 +3,7 @@ package service
 import (
 	"context"
 
-	"github.com/giovanisilqueirasantos/coinconv/domain"
+	"github.com/giovanisilqueirasantos/coin-conv-go/domain"
 )
 
 type Service interface {

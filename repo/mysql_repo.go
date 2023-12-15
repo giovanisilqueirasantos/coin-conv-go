@@ -5,7 +5,7 @@ import (
 	"database/sql"
 	"fmt"
 
-	"github.com/giovanisilqueirasantos/coinconv/domain"
+	"github.com/giovanisilqueirasantos/coin-conv-go/domain"
 )
 
 type mysqlRepo struct {

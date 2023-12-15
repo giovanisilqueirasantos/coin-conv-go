@@ -1,4 +1,4 @@
-module github.com/giovanisilqueirasantos/coinconv
+module github.com/giovanisilqueirasantos/coin-conv-go
 
 go 1.18
 

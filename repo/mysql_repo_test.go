@@ -7,7 +7,7 @@ import (
 	"testing"
 
 	"github.com/DATA-DOG/go-sqlmock"
-	"github.com/giovanisilqueirasantos/coinconv/domain"
+	"github.com/giovanisilqueirasantos/coin-conv-go/domain"
 	"github.com/stretchr/testify/assert"
 )
 

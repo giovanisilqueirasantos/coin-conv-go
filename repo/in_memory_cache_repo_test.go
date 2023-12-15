@@ -6,7 +6,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/giovanisilqueirasantos/coinconv/domain"
+	"github.com/giovanisilqueirasantos/coin-conv-go/domain"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
 )

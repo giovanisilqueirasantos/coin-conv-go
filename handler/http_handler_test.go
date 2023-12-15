@@ -7,7 +7,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/giovanisilqueirasantos/coinconv/service"
+	"github.com/giovanisilqueirasantos/coin-conv-go/service"
 	"github.com/labstack/echo/v4"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"

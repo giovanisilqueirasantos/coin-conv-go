@@ -3,7 +3,7 @@ package repo
 import (
 	"context"
 	"fmt"
-	"github.com/giovanisilqueirasantos/coinconv/domain"
+	"github.com/giovanisilqueirasantos/coin-conv-go/domain"
 	"sync"
 	"time"
 )

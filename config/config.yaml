@@ -7,4 +7,4 @@ database:
   port: "3306"
   user: "user"
   pass: "password"
-  name: "coinconv"
+  name: "coinconvgo"

@@ -4,8 +4,8 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/giovanisilqueirasantos/coinconv/domain"
-	"github.com/giovanisilqueirasantos/coinconv/service"
+	"github.com/giovanisilqueirasantos/coin-conv-go/domain"
+	"github.com/giovanisilqueirasantos/coin-conv-go/service"
 	"github.com/labstack/echo/v4"
 )
 

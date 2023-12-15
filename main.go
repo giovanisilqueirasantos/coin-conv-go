@@ -8,10 +8,10 @@ import (
 
 	_ "github.com/go-sql-driver/mysql"
 
-	"github.com/giovanisilqueirasantos/coinconv/config"
-	"github.com/giovanisilqueirasantos/coinconv/handler"
-	"github.com/giovanisilqueirasantos/coinconv/repo"
-	"github.com/giovanisilqueirasantos/coinconv/service"
+	"github.com/giovanisilqueirasantos/coin-conv-go/config"
+	"github.com/giovanisilqueirasantos/coin-conv-go/handler"
+	"github.com/giovanisilqueirasantos/coin-conv-go/repo"
+	"github.com/giovanisilqueirasantos/coin-conv-go/service"
 
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
